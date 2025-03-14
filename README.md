@@ -95,6 +95,12 @@ maxUploadSize = 512
 - **Box Overlap Threshold**: Controls removal of overlapping text regions
 - **Box Types**: Select which types of content to extract (text, titles, footnotes, etc.)
 
+## Some technical details
+
+- Padding around the boxes is necessary as if the box image is too tight when passed on for OCR, letters are read improperly, e.g. "Altay" will be read as "Altav"
+- Overlap percentage measures if two boxes share high amout of area, as the box creation is imperfect, box coordinates are not always perfectly aligned to be inside one another, so using only box coordinates to determine box overlap is not enough
+- The setting "2 Columns" works by assigning each box to one of three categories - Monolithic (spanning the whole page width) , Column 1 or Column 2, based on where the middle point of the box is compared to the middle point of the page. The "Monolithic Threshold (%)" slider allows for some flexibility on box designation, as the Monolithic boxes might not be perfectly aligned with the page middle point
+
 ## Limitations
 
 - Large PDF files may require significant memory and processing time
@@ -103,7 +109,8 @@ maxUploadSize = 512
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+- Contributions are welcome! Please feel free to submit a Pull Request.     
+- Right now, I am also exploring saving objects like tables, charts, grapgh and formulas as images and inserting them back into the DOCX file, while keeping their approximate location. 
 
 ## License
 
