@@ -57,7 +57,7 @@ pip install https://paddle-model-ecology.bj.bcebos.com/paddlex/whl/paddlex-3.0.0
 4. Install other dependencies:
 
 ```bash
-pip install paddleocr pymupdf opencv-python numpy pillow python-docx streamlit albucore==0.0.16 psutil
+pip install paddleocr pymupdf opencv-python numpy pillow python-docx streamlit albucore==0.0.16
 ```
 
 ## Usage
