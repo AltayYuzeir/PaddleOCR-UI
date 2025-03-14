@@ -1,0 +1,104 @@
+# PDF2DOCX OCR UI
+
+A Streamlit-based tool for converting PDF documents to DOCX format using PaddleOCR and PaddleX for layout analysis and text extraction.
+
+## Features
+
+- Convert PDF documents to DOCX while preserving text content
+- Advanced layout detection using PaddleX
+- Optical Character Recognition (OCR) with PaddleOCR
+- Support for both single-column and two-column document layouts
+- Customizable parameters for optimizing extraction quality
+- Clean, intuitive user interface built with Streamlit
+
+
+## Requirements
+
+- Python 3.10
+- PaddlePaddle
+- PaddleX
+- PaddleOCR
+- PyMuPDF
+- OpenCV
+- Streamlit
+- Other dependencies listed in requirements.txt
+
+## Installation
+
+1. Create a new conda environment:
+
+```bash
+conda create -n pdf2docx_paddlex_env python=3.10
+conda activate pdf2docx_paddlex_env
+```
+
+2. Install PaddlePaddle:
+
+```bash
+python -m pip install paddlepaddle==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+```
+
+3. Install PaddleX:
+
+```bash
+pip install https://paddle-model-ecology.bj.bcebos.com/paddlex/whl/paddlex-3.0.0rc0-py3-none-any.whl
+```
+
+4. Install other dependencies:
+
+```bash
+pip install paddleocr pymupdf opencv-python numpy pillow python-docx streamlit albucore==0.0.16 psutil
+```
+
+## Usage
+
+1. Run the application:
+
+```bash
+streamlit run app.py
+```
+
+2. Configure the Streamlit theme (optional):
+
+Create a file named `.streamlit/config.toml` with the following content:
+
+```toml
+[theme]
+base="dark"
+primaryColor="#336699"
+
+[server]
+maxUploadSize = 512
+```
+
+3. Upload your PDF files and click "Start Conversion"
+
+## Parameters
+
+- **Document Layout**: Choose between one-column or two-column layouts
+- **DPI for PDF Rendering**: Higher values give better quality but require more processing time
+- **Margin Size**: Extra padding around detected text regions
+- **Confidence Threshold**: Minimum confidence score for text detection
+- **Box Overlap Threshold**: Controls removal of overlapping text regions
+- **Box Types**: Select which types of content to extract (text, titles, footnotes, etc.)
+
+## Limitations
+
+- Large PDF files may require significant memory and processing time
+- Complex layouts with non-standard formatting may not be perfectly preserved
+- Mathematical formulas and special characters may not be accurately recognized
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+[Choose an appropriate license and add it here]
+
+## Acknowledgements
+
+- [PaddlePaddle](https://www.paddlepaddle.org.cn/)
+- [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
+- [PaddleX](https://github.com/PaddlePaddle/PaddleX)
+- [Streamlit](https://streamlit.io/)

@@ -1,0 +1,9 @@
+[browser]
+gatherUsageStats = false
+
+[theme]
+base="dark"
+primaryColor="#336699"
+
+[server]
+maxUploadSize = 512

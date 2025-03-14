@@ -1,0 +1,8 @@
+paddleocr
+pymupdf
+opencv-python
+numpy
+pillow
+python-docx
+streamlit
+albucore==0.0.16
