@@ -100,7 +100,7 @@ maxUploadSize = 512
 - Padding around the boxes is necessary as if the box image is too tight when passed on for OCR, letters are read improperly, e.g. "Altay" will be read as "Altav", cutting the tail of the letter "y"
 - Overlap percentage measures if two boxes share high amout of area, as the box creation is imperfect, box coordinates are not always perfectly aligned to be inside one another, so using only box coordinates to determine box overlap is not enough
 - The setting "2 Columns" works by assigning each box to one of three categories - Monolithic (spanning the whole page width) , Column 1 or Column 2, based on where the middle point of the box is compared to the middle point of the page. The "Monolithic Threshold (%)" slider allows for some flexibility on box designation, as the Monolithic boxes might not be perfectly aligned with the page middle point
-- Great care was taken to purge the memory of any unnecessray objects after each processing step, to allow for PDFs with hundreds or even thoausand of pages to be converted.
+- Great care was taken to purge the memory of any unnecessray objects after each processing step, to allow for PDFs with hundreds or even thousands of pages to be converted.
 
 ## Limitations
 
