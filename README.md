@@ -1,6 +1,7 @@
 # PDF2DOCX OCR UI
 
-A Streamlit-based tool for converting PDF documents to DOCX format using PaddleOCR and PaddleX for layout analysis and text extraction.
+A Streamlit-based tool for converting PDF documents to DOCX format using PaddleOCR and PaddleX for layout analysis and text extraction.    
+This app is build to run on CPU, contributions are welcome for running on CUDA-compatible GPUs.
 
 ## Features
 
@@ -32,13 +33,13 @@ conda create -n pdf2docx_paddlex_env python=3.10
 conda activate pdf2docx_paddlex_env
 ```
 
-2. Install PaddlePaddle:
+2. Install PaddlePaddle, check [PaddlePaddle Install](https://paddlepaddle.github.io/PaddleX/latest/en/installation/paddlepaddle_install.html):
 
 ```bash
 python -m pip install paddlepaddle==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 ```
 
-3. Install PaddleX:
+3. Install PaddleX, check [PaddleX install](https://paddlepaddle.github.io/PaddleX/latest/en/installation/installation.html#21-get-paddlex-based-on-docker):
 
 ```bash
 pip install https://paddle-model-ecology.bj.bcebos.com/paddlex/whl/paddlex-3.0.0rc0-py3-none-any.whl
@@ -63,6 +64,9 @@ streamlit run app.py
 Create a file named `.streamlit/config.toml` with the following content:
 
 ```toml
+[browser]
+gatherUsageStats = false
+
 [theme]
 base="dark"
 primaryColor="#336699"
@@ -94,7 +98,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-[Choose an appropriate license and add it here]
+CC BY-NC 4.0
 
 ## Acknowledgements
 
