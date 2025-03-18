@@ -1,6 +1,6 @@
 # Pdf2Docx OCR with PaddleX-PaddleOCR and Streamlit UI
 
-A Streamlit-based tool for converting PDF documents to DOCX format using PaddleOCR and PaddleX for layout analysis and text extraction.    
+A Streamlit-based tool for converting PDF documents to DOCX format using PaddleX and PaddleOCR for layout analysis and text extraction.    
 This app is build to run on CPU, contributions are welcome for running on CUDA-compatible GPUs.
 
 <img src="imgs/ui.png" width="100%"/>
