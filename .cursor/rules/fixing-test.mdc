@@ -1,0 +1,7 @@
+---
+description: "When an attempt to solve an error or problem fails"
+type: agent-select
+alwaysApply: true
+---
+Describe what the failing test is trying to assert. Then, describe the actual behavior of the solution code covered by this test. Finally, decide which is incorrect and needs modification: the test or the solution code.
+

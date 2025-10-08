@@ -1,0 +1,25 @@
+---
+description: "Rules for using the UV sandbox for dependency resolution"
+type: agent-select
+alwaysApply: false
+---
+- Purpose: Use pip for app/CI; use `tools/uv_sandbox/` only to resolve complex pins.
+- When to use: Protobuf ≥5, gRPC changes, `torch` 2.7.x, `sentence-transformers` 5.x, or dependency conflicts.
+- Separation of concerns:
+  - No `[tool.uv.*]` in root `pyproject.toml`; UV config only in `tools/uv_sandbox/pyproject.toml`.
+  - App/CI uses pip + `requirements*.txt` (scope `PIP_EXTRA_INDEX_URL` per CI step if needed).
+- Setup (sandbox):
+  - Mirror root deps; keep `protobuf==5.29.5` and `grpcio*==1.63.0` aligned.
+  - Per-package index mapping only; no global extra indexes or unsafe index strategy.
+    - Example:
+      ```toml
+      [tool.uv.sources]
+      torch = { index = "pytorch" }
+      [[tool.uv.index]]
+      name = "pytorch"
+      url = "https://download.pytorch.org/whl/cpu"
+      explicit = true
+      ```
+- Run flow: `uv lock` → `uv venv --allow-existing` → `uv sync` (`--frozen` to validate) → `uv pip check` → `uv tree`.
+- Python: `requires-python = ">=3.12,<3.13"`; CI pins `python-version: "3.12"`.
+- Verified fixes: `streamlit>=1.48.0` with `pillow>=11.1.0`; `pytest-docker>=3,<4` with `pytest>=8,<9`.

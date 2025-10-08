@@ -1,3 +1,100 @@
+# UV sandbox artifacts
+tools/uv_sandbox/.venv/
+tools/uv_sandbox/.python-version
+# Compiled outputs
+bin/
+*.out
+
+# Virtualenv
+.venv/
+.venv-ci/
+.pvenv/
+venv/
+.cu121/
+.tox/
+.nox/
+.mypy_cache/
+
+
+# Python cache and build files
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+build/
+_build/
+dist/
+*.egg-info/
+.ruff_cache
+.test-build*
+.cache/
+.pre-commit-cache/
+.uv-cache/
+.uv-cache-hooks/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+.env.backup
+
+# Logs
+logs/
+
+# Ignore distribution and packaging files
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+cuda-keyring_*.deb
+
+# google cloud
+google-cloud-sdk/
+
+# Large data files, assets, or logs
+.ollama_models/
+model_cache/
+data/
+.data/
+.weaviate_db/
+assets/
+*.csv
+# If they are large datasets
+*.log
+wget-log
+faiss_index/
+deptry*.*
+
+# Test reports and artifacts
+reports/
+!reports/.gitkeep
+# Coverage artifacts
+.coverage*
+coverage/
+
+# Analysis & Scan Reports
+*.sarif
+
+# Third-party libraries you've vendored/included
+vendor/
+third_party/
+# secrets
+secrets/
+secrets.*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

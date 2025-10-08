@@ -1,0 +1,89 @@
+[
+  {
+    "id": "gemini-pro-plan",
+    "name": "Gemini Pro Plan Agent",
+    "description": "Drafts a step-by-step plan but does not start to execute on it",
+    "model": "gemini-2.5-pro",
+    "temperature": 0.8,
+    "max_tokens": 16384,
+    "stopSequences": [
+      "<END>"
+    ],
+    "tools": [
+      "mcp-search",
+      "cursor-complete"
+    ],
+    "fallback_model": "gpt-4o-mini"
+  },
+  {
+    "id": "gemini-pro-exec",
+    "name": "Gemini Pro Exec Agent",
+    "description": "Follows the approved plan deterministically to apply edits",
+    "model": "gemini-2.5-pro",
+    "temperature": 0.2,
+    "max_tokens": 8192,
+    "stopSequences": [
+      "<END>"
+    ],
+    "tools": [
+      "cursor-complete",
+      "cursor-edit",
+      "shell",
+      "mcp-search"
+    ],
+    "fallback_model": "gpt-4o-mini"
+  },
+  {
+    "id": "agent",
+    "name": "Agent",
+    "actionId": "composerMode.agent",
+    "icon": "infinity",
+    "description": "Plan, search, make edits, run commands",
+    "thinkingLevel": "none",
+    "shouldAutoApplyIfNoEditTool": true,
+    "autoFix": true,
+    "autoRun": true,
+    "enabledTools": [],
+    "enabledMcpServers": [],
+    "fullAutoRun": false
+  },
+  {
+    "id": "review-edits",
+    "name": "Careful",
+    "actionId": "composerMode.review-edits",
+    "icon": "targetTwo",
+    "description": "Steer Agent on every edit to make precise changes",
+    "thinkingLevel": "none",
+    "shouldAutoApplyIfNoEditTool": true,
+    "autoFix": true,
+    "autoRun": false,
+    "enabledTools": [],
+    "enabledMcpServers": []
+  },
+  {
+    "id": "chat",
+    "name": "Ask",
+    "actionId": "composerMode.chat",
+    "icon": "chat",
+    "description": "Ask Cursor questions about your codebase",
+    "thinkingLevel": "none",
+    "shouldAutoApplyIfNoEditTool": false,
+    "autoFix": true,
+    "autoRun": false,
+    "enabledTools": [],
+    "enabledMcpServers": []
+  },
+  {
+    "id": "background",
+    "name": "Background",
+    "actionId": "composerMode.background",
+    "icon": "cloudTwo",
+    "description": "Run agents in the background",
+    "thinkingLevel": "none",
+    "shouldAutoApplyIfNoEditTool": false,
+    "autoFix": false,
+    "autoRun": false,
+    "enabledTools": [],
+    "enabledMcpServers": []
+  }
+]

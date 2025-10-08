@@ -1,0 +1,192 @@
+# Codex CLI configuration (latest schema template)
+#
+# This template enumerates commonly supported and forward‑compatible options
+# with default values. Options are documented in comments with alternative
+# choices. If your Codex CLI errors on unknown keys, comment out sections you
+# don’t need. Paths are relative to repo root unless noted.
+
+version: 1 # config schema version
+
+profile: default # name of this config profile (string)
+
+approvals:
+  # How privileged commands are approved.
+  # Options: untrusted, on-failure, on-request, never
+  mode: on-request
+  # Require a brief justification message when requesting escalation.
+  require_justification: true
+  # Ask before potentially destructive actions (e.g., rm -rf, reset) unless explicitly requested.
+  destructive_command_confirm: true
+  # Timeout for escalated actions (ms). 0 = no extra timeout.
+  escalated_timeout_ms: 600000
+
+sandbox:
+  # Filesystem access policy for shell commands.
+  # Options: read-only, workspace-write, danger-full-access
+  filesystem: workspace-write
+  # Network access policy for shell commands.
+  # Options: restricted, enabled*
+  network: enabled
+  # GUI apps are typically blocked in headless environments.
+  allow_gui_apps: true
+
+tools:
+  shell:
+    # Default timeout for shell commands (ms).
+    default_timeout_ms: 600000
+    # Output capture limits (Codex CLI truncates around these values).
+    max_output_lines: 256
+    max_output_bytes: 10240
+    # Prefer ripgrep for searches when available.
+    prefer_rg: true
+    # When reading files in chunks, limit lines per chunk.
+    chunk_read_line_limit: 250
+    # Working directory to execute commands in; typically repo root.
+    working_dir: .
+    # Whether to allow network by default for shell commands (overridden by sandbox.network).
+    enable_network_by_default: true
+    # Never write outside workspace unless escalated and approved.
+    allow_write_outside_workspace: false
+
+  apply_patch:
+    # Enable file patching via apply_patch tool.
+    enabled: true
+    # Allow creation, updates, and deletions.
+    allow_add: true
+    allow_update: true
+    allow_delete: true
+    # Ask for confirmation on delete operations.
+    require_confirmation_on_delete: true
+    # Diff/patch behavior
+    # Number of unchanged context lines to include around each hunk.
+    context_lines: 3
+    # Normalize end-of-line characters in patched files.
+    normalize_eol: true
+    # Ensure files end with a trailing newline when patching.
+    ensure_trailing_newline: true
+    # Strip trailing whitespace from modified lines.
+    strip_trailing_whitespace: true
+
+  update_plan:
+    # Use the planning tool to show steps and progress.
+    enabled: true
+    # Heuristic: auto-create a plan on multi-step tasks.
+    auto_create_on_complex_tasks: true
+    # Enforce exactly one in_progress step at a time.
+    enforce_single_in_progress: true
+    # Soft upper bound to keep plans readable.
+    max_steps: 12
+
+agent:
+  # Default persona characteristics used by the assistant.
+  persona: concise-direct-friendly
+  # Default verbosity (1=minimal, 10=very verbose).
+  default_oververbosity: 3
+  preambles:
+    # Emit brief preambles before tool calls.
+    enabled: true
+    # Group related actions into one preamble.
+    group_related_actions: true
+    # Target length guidance for preambles.
+    min_words: 8
+    max_words: 20
+  progress_updates:
+    # Occasional 1–2 sentence progress updates on longer tasks.
+    enabled: true
+    style: short # Options: short, detailed
+  # Stop when the task is complete (don’t idle).
+  stop_on_completion: true
+
+output:
+  # Rendering preferences for assistant messages.
+  headings_style: title-case # Options: none, sentence-case, title-case
+  allow_bullets: true
+  allow_code_blocks: false # Set true to allow fenced code in responses
+  max_line_length: 120
+  # Diff rendering preferences for assistant messages.
+  diffs:
+    enabled: true # Show patch summaries when relevant
+    style: unified # Options: unified, split, minimal
+    context_lines: 5 # Match apply_patch context for consistency
+    show_file_stats: true # Show added/removed line counts per file
+    color: auto # Options: auto, always, never
+    max_bytes: 262144 # Truncate very large diffs in UI
+
+logging:
+  level: info # Options: debug, info, warn, error
+  to_file: true
+  file_path: logs/codex/session.log
+  to_console: true
+  redact_secrets: true
+  include_tool_calls: true # Log tool invocations (sans secrets)
+
+privacy:
+  # Best-effort redaction for sensitive strings in logs/output.
+  pii_redaction: true
+  redact_env_vars: ["OPENAI_API_KEY", "ANTHROPIC_API_KEY", "AZURE_OPENAI_KEY", "GITHUB_TOKEN", "GEMINI_API_KEY", "GOOGLE_API_KEY"]
+  # Additional patterns to redact from logs.
+  secret_patterns:
+    - "(?i)api[-_ ]?key"
+    - "AKIA[0-9A-Z]{16}"
+    - "(?i)secret"
+
+retries:
+  # Global retry policy for transient tool errors (not user code failures).
+  max_attempts: 3
+  backoff_ms: 1000
+
+limits:
+  # Guardrails to avoid runaway sessions.
+  max_shell_commands_per_run: 100
+  max_plan_updates_per_run: 20
+  max_patch_operations_per_run: 100
+
+validation:
+  # Optionally run tests after changes (off by default to keep iteration fast).
+  run_tests_after_changes: false
+  # Commands used when validation is enabled.
+  test_commands:
+    - "pytest tests/unit -n auto --maxfail=1 -q --junitxml=reports/junit.xml"
+  # Optional formatters to run (e.g., ruff format).
+  formatter_commands: ["ruff format", "ruff check --fix", "pyright ."]
+  # If enabled, commands returning non-zero exit will fail validation.
+  fail_on_lint_errors: true
+
+ui:
+  # Whether to show chain-of-thought/thinking (should remain false in most setups).
+  show_thinking: false
+  # Display the current plan steps in the UI when available.
+  show_plan: true
+  # Color output preference.
+  color: auto # Options: auto, always, never
+  # Display diff previews for patches when available.
+  show_diffs: true
+
+integrations:
+  git:
+    # Never auto-commit unless explicitly requested.
+    auto_commit: false
+    sign_commits: false
+    branch_strategy: none # Options: none, feature-branch
+
+environment:
+  # Load env vars from this file in addition to process env.
+  env_file: .env
+  inherit_process_env: true
+
+llm:
+  # Provider configuration (set per environment). Leave as 'auto' to let Codex CLI pick.
+  provider: openai # Options: auto, openai, azure-openai, anthropic, local
+  model: auto # Example: gpt-4o-mini, gpt-4.1, claude-3.5-sonnet
+  temperature: 0.2 #default 0.2
+  max_tokens: 2048 #default 2048
+  stream: true
+  # Per-provider overrides (keys/urls) should be supplied via environment vars, not here.
+
+extensibility:
+  # Optional plugins or custom tools.
+  plugins: []
+
+experimental:
+  # Enable multi-agent orchestration or delegated agents if supported.
+  allow_delegated_agents: false

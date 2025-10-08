@@ -1,0 +1,3 @@
+# Ignore GitHub Actions workflow files
+# These use valid GitHub Actions context that may be flagged by local linters
+.github/workflows/semgrep.yml

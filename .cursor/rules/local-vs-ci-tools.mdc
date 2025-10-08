@@ -1,0 +1,12 @@
+---
+description: "Prefer local tools over Docker/CI approaches for local development"
+type: agent-select
+alwaysApply: true
+---
+
+When running tools locally that are also used in CI/CD workflows:
+
+- Check for local tool installations first (`which toolname`)
+- Use local tools directly instead of Docker containers when available
+- Only use Docker/CI approaches if local installation is impossible or impractical
+- CI workflows use Docker for consistency; local development prefers simplicity and speed

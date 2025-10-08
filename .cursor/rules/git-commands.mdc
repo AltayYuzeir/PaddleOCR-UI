@@ -1,0 +1,9 @@
+---
+description: "git commands usage by AI agent"
+type: agent-select
+alwaysApply: false
+---
+- Use Git for version control.
+- Use Conventional Commits.
+- Use dev branch for new features and bug fixes.
+- To avoid the interactive pager that you get with `git log`, use `git --no-pager log`

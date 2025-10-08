@@ -1,0 +1,12 @@
+---
+description: Validate JSON schemas before applying edits
+type: agent-select
+globs:
+  - "schemas/**/*.json"
+  - "**/*.schema.json"
+alwaysApply: false
+---
+- Preconditions:
+  - Run the `shell` tool using `jsonlint` to check JSON syntax of the target file.
+  - If parsing fails, abort and output the error.
+- When modifying JSON schema files, run a validation step via `mcp-search` to ensure schema correctness.

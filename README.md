@@ -1,7 +1,8 @@
-# Pdf2Docx OCR with PaddleX-PaddleOCR and Streamlit UI
+# GPU version of Pdf2Docx OCR with PaddleX-PaddleOCR and Streamlit UI
 
 A Streamlit-based tool for converting PDF documents to DOCX format using PaddleX and PaddleOCR for layout analysis and text extraction.    
-This app is build to run on CPU, contributions are welcome for running on CUDA-compatible GPUs.
+
+This app is build to run on GPU (Cuda) !
 
 <img src="imgs/ui.png" width="100%"/>
 
@@ -42,22 +43,47 @@ conda create -n pdf2docx_paddlex_env python=3.10
 conda activate pdf2docx_paddlex_env
 ```
 
-2. Install PaddlePaddle, check [PaddlePaddle Install](https://paddlepaddle.github.io/PaddleX/latest/en/installation/paddlepaddle_install.html):
+2.1 Install uv (once)
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# then re-source your shell init if needed, or call with full path: ~/.cargo/bin/uv
+```
+
+2.2 Pin the “tricky” versions (to avoid NumPy 2.x conflicts)
+```bash
+uv pip install --python "$(which python)" "numpy==1.24.4"
+uv pip install --python "$(which python)" "albumentations==1.4.10" "albucore==0.0.16"
+```
+
+2.3 Install PaddlePaddle (GPU build from the CUDA 12.6 index), check [PaddlePaddle Install](https://paddlepaddle.github.io/PaddleX/latest/en/installation/paddlepaddle_install.html):
 
 ```bash
-python -m pip install paddlepaddle==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+uv pip install --python "$(which python)" \
+  "paddlepaddle-gpu==3.0.0" \
+  --index-url "https://www.paddlepaddle.org.cn/packages/stable/cu126/"
 ```
 
 3. Install PaddleX, check [PaddleX install](https://paddlepaddle.github.io/PaddleX/latest/en/installation/installation.html#21-get-paddlex-based-on-docker):
 
 ```bash
-pip install https://paddle-model-ecology.bj.bcebos.com/paddlex/whl/paddlex-3.0.0rc0-py3-none-any.whl
+# inside your env (conda/venv/uv venv), install the wheel from URL
+# make sure the right Python is targeted (your current env)
+uv pip install --python "$(which python)" --no-deps https://paddle-model-ecology.bj.bcebos.com/paddlex/whl/paddlex-3.0.0rc0-py3-none-any.whl
 ```
 
 4. Install other dependencies:
 
 ```bash
-pip install paddleocr==2.10.0 pymupdf opencv-python numpy pillow python-docx streamlit albucore==0.0.16
+uv pip install --python "$(which python)" "paddleocr==2.10.0" "pymupdf" "opencv-python" "pillow" "python-docx" "streamlit"
+```
+
+5. Sanity-check GPU, then run
+```bash
+python - << 'PY'
+import paddle
+paddle.utils.run_check()
+print("device:", paddle.device.get_device())
+PY
 ```
 
 ## Usage

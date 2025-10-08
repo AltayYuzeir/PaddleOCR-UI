@@ -1,0 +1,14 @@
+---
+description: "Logging configuration and file management rules"
+type: agent-select
+globs:
+  - "**/*.py"
+  - "**/*.sh"
+  - "**/*.yml"
+  - "**/*.yaml"
+  - "**/*.log"
+alwaysApply: false
+---
+- **All log files must be created in the `logs/` directory** at the project root.
+- Use structured logging with appropriate log levels (DEBUG, INFO, WARNING, ERROR).
+- Use descriptive log file names (e.g., `rag_system.log`, `cli.log`).

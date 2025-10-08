@@ -1,0 +1,20 @@
+---
+description: "Guidelines when modifying cursor rules to ensure correct header format"
+type: agent-select
+globs:
+  - ".cursor/rules/*.mdc"
+alwaysApply: false
+---
+- **Always examine existing `.mdc` files in `.cursor/rules/` directory for examples of correct header format before creating or modifying cursor rules**
+- Cursor rule headers must follow this exact format:
+  ```yaml
+  ---
+  description: "Brief description of the rule's purpose"
+  type: agent-select
+  globs: []  # or specific file patterns if applicable
+  alwaysApply: true  # or false depending on scope
+  ---
+  ```
+- After the header, content should be a bulleted list of specific guidelines or rules
+- When creating new rules, copy the header structure from an existing similar rule and modify as needed
+- Verify the YAML syntax is valid and properly indented

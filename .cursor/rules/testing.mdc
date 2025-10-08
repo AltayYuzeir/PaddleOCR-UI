@@ -1,0 +1,16 @@
+---
+description: "Write and run Python tests with folder-based suites and consistent execution"
+type: agent-select
+globs:
+  - "tests/**/*.py"
+  - "**/*_test.py"
+alwaysApply: false
+---
+- Write unit tests for your functions and components.
+- Run tests using `.venv/bin/python -m pytest tests/unit/` for unit tests only.
+- Use folder-based test suites (see `pyproject.toml` testpaths):
+  - Unit: `tests/unit/` (fast, sockets blocked, parallel: `-n auto`)
+  - Integration: `tests/integration/` (one real component, network allowed)
+  - E2E: `tests/e2e/` (full stack via Docker Compose)
+  - UI: `tests/ui/` (Playwright browser tests, `--no-cov`)
+- Unit tests must not perform real network I/O. Use integration and e2etests for network operations.

@@ -1,0 +1,11 @@
+---
+description: "Most important project context files"
+type: agent-select
+alwaysApply: false
+---
+- The most important documents to use when making changes in project:
+    docs/AI_coder/AI_instructions.md
+    docs/dev_test_CI/testing_approach.md
+    docs/dev_test_CI/DEVELOPMENT.md
+    docs/operate/docker-management.md
+- Use the `@` syntax with the full relative path so that tools like `mcp-search` and file reads target the correct folder.

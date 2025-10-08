@@ -1,0 +1,15 @@
+---
+description: "Never remove production Docker volumes - use -v flag only for test containers"
+type: agent-select
+globs:
+  - "**/docker-compose*.yml"
+  - "**/Dockerfile*"
+  - "**/*.sh"
+alwaysApply: true
+---
+- **Never remove production Docker volumes** - this means never use `-v` flag when running on non-test containers
+- **Forbidden command pattern:** `docker -f docker/docker-compose.yml compose down -v`
+- **Safe for test containers:** Using `-v` flag is acceptable only when working with test-specific Docker Compose files
+- **Production safety:** Always verify the target environment before using volume removal flags
+- **Alternative approach:** Use `docker compose down` without `-v` flag for production environments
+- **When in doubt:** Assume production and avoid volume removal flags

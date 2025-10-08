@@ -1,0 +1,10 @@
+---
+description: "After editing code, run the project's build and test suite to catch regressions"
+type: agent-select
+alwaysApply: false
+---
+- After completing edits, run the project's test command via terminal.
+- On test failures:
+  - For first-time failures: Stop and output failure logs (see error-handling rule)
+  - For repeated failures after 3 attempts: Revert changes and apply problem-solving approach
+- This rule works in sequence with error-handling and problem-solving rules.

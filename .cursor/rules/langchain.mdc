@@ -1,0 +1,10 @@
+---
+description: "Rules for LangChain integration"
+type: agent-select
+globs:
+  - "**/*.py"
+alwaysApply: false
+---
+- Use environment variables to manage API keys and other sensitive information.
+- Implement robust error handling, especially around API calls to LangChain.
+- Integrate logging to monitor the interaction between your app and LangChain.
