@@ -2,6 +2,7 @@
 
 A Streamlit-based tool for converting PDF documents to DOCX format using PaddleX and PaddleOCR for layout analysis and text extraction.    
 This app is build to run on CPU, contributions are welcome for running on CUDA-compatible GPUs.
+Also help wanted to bring the pipeline to PaddleOCR V3 library with improved models.
 
 <img src="imgs/ui.png" width="100%"/>
 
@@ -124,6 +125,7 @@ CC BY-NC 4.0
 - [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
 - [PaddleX](https://github.com/PaddlePaddle/PaddleX)
 - [Streamlit](https://streamlit.io/)
+
 
 
 
