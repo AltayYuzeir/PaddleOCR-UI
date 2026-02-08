@@ -110,7 +110,8 @@ maxUploadSize = 512
 
 ## Contributing
 
-- Contributions are welcome! Please feel free to submit a Pull Request.     
+- Contributions are welcome! Please feel free to submit a Pull Request.
+- It would be awesome if the new paddleocr v3 pipelines could be implemeneted, boasting improved models.
 - Right now, I am also exploring saving objects like tables, charts, grapgh and formulas as images and inserting them back into the DOCX file, while keeping their approximate location. 
 
 ## License
@@ -123,4 +124,5 @@ CC BY-NC 4.0
 - [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
 - [PaddleX](https://github.com/PaddlePaddle/PaddleX)
 - [Streamlit](https://streamlit.io/)
+
 
