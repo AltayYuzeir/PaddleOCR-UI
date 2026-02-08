@@ -46,13 +46,33 @@ st.set_page_config(page_title="PDF to Docx PaddleX/OCR", page_icon="📚")
 st.markdown(
    """
     <style>
-  /* Increase slider label size */
-    div[data-testid="stSlider"] label div[data-testid="stMarkdownContainer"] p {
-        font-size:20px !important;
-        color: white !important;
-        font-weight: bold !important;
-    }
-    
+ 
+div[data-baseweb="slider"] {
+    padding: 12px 0 !important;
+    min-height: 48px !important;
+}
+
+
+div[data-testid="stSlider"] label p {
+    font-size: 20px !important;
+    color: white !important;
+    font-weight: bold !important;
+}
+
+div[data-baseweb="slider"] div[role="slider"] {
+    width: 20px !important;
+    height: 20px !important;
+    margin-top: 0px !important;
+    background-color: #cc6600 !important;
+    border: 0px solid white !important;
+    box-shadow: 0 0 6px rgba(0,0,0,0.4);
+}
+
+div[data-testid="stSliderThumbValue"] p {
+    font-size: 16px !important;
+    color: white !important;
+}
+
   /* Increase upload field text size */
     div[data-testid="stFileUploader"] label div[data-testid="stMarkdownContainer"] p {
         font-size: 20px !important;
@@ -67,9 +87,9 @@ st.markdown(
         font-size: 20px !important;
         color: white !important;
         font-weight: bold !important;
-    }    
-    
-    
+    }
+
+
     div.stButton > button {
         background-color: #336699 !important;  /* Change to any color */
         color: white !important;              /* Text color */
@@ -78,35 +98,11 @@ st.markdown(
         padding: 10px 20px !important;        /* Button padding */
         width:100%;
     }
-    
+
      div.stButton > button:hover {
         background-color: #204060 !important;  /* Background color on hover */
     }
-    
-    /* Increase slider text size */
-div.stSlider > div[data-baseweb="slider"] > div > div {
-    height: 12px !important;
-    font-size: 16px;
-    color:white;
 
-}
-
-/* Adjust the thumb (handle) size and position */
-div.stSlider > div[data-baseweb="slider"] > div > div > div {
-    height: 20px !important;
-    width: 20px !important;
-    margin-top: -0px !important;
-    background-color: white !important;
-    border: 4px solid white !important;
-}
-
-/* Adjust the thumb (handle) text size to match */
-div[data-testid="stSlider"] > div > div > div > div > div {
-    margin-top: -4px !important;  /* Center the handle on the track */
-    color: white;
-    font-size:16px;
-
-}
 
     </style>
     """,
@@ -984,3 +980,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
