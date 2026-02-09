@@ -2,7 +2,7 @@
 ##
 ##      Needs Python version 3.10, PaddlePaddle and PaddleX
 ##      conda create -n pdf2docx_paddlex_env python=3.10 
-##      python -m pip install paddlepaddle==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+##      python -m pip install paddlepaddle==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
 ##      pip install https://paddle-model-ecology.bj.bcebos.com/paddlex/whl/paddlex-3.0.0rc0-py3-none-any.whl
 ##      pip install paddleocr==2.10.0 pymupdf opencv-python numpy pillow python-docx streamlit albucore==0.0.16
 ##
@@ -980,4 +980,5 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
