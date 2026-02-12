@@ -52,7 +52,7 @@ python -m pip install paddlepaddle==3.0.0 -i https://www.paddlepaddle.org.cn/pac
 3. Install PaddleX, check [PaddleX install](https://paddlepaddle.github.io/PaddleX/latest/en/installation/installation.html#21-get-paddlex-based-on-docker):
 
 ```bash
-pip install https://paddle-model-ecology.bj.bcebos.com/paddlex/whl/paddlex-3.0.0-py3-none-any.whl
+pip install https://paddle-model-ecology.bj.bcebos.com/paddlex/whl/paddlex-3.0.0rc0-py3-none-any.whl
 ```
 
 4. Install other dependencies:
@@ -125,6 +125,7 @@ CC BY-NC 4.0
 - [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
 - [PaddleX](https://github.com/PaddlePaddle/PaddleX)
 - [Streamlit](https://streamlit.io/)
+
 
 
 
