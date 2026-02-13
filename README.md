@@ -117,7 +117,7 @@ maxUploadSize = 512
 
 ## License
 
-CC BY-NC 4.0
+AGPL 3.0
 
 ## Acknowledgements
 
@@ -125,6 +125,7 @@ CC BY-NC 4.0
 - [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
 - [PaddleX](https://github.com/PaddlePaddle/PaddleX)
 - [Streamlit](https://streamlit.io/)
+
 
 
 
